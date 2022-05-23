@@ -1,0 +1,20 @@
+level: debug
+authorization:
+  expireHour: 1
+resetPassword: 123456
+db:
+  mysql:
+    host: 127.0.0.1
+    port: 3306
+    dataBase: transport
+    username: root
+    password: zsw123456
+    logMode: debug
+    config: charset=utf8mb4&parseTime=true&loc=Local
+    tablePrefix: shard_
+
+  redis:
+    host:  127.0.0.1
+    port: 6379
+    dataBase: 0
+    password:

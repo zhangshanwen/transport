@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto;
+option go_package = "github.com/zhangshanwen/transport/utils/proto";
+
+message NormalRequest {
+  int32 code = 1;
+}
+message NormalReply {
+  int32 code = 1;
+}

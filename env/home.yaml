@@ -1,0 +1,16 @@
+connecttime: 1
+host: 0.0.0.0
+maxconnect: 100
+module:
+- cmd: ./bin/admin
+  name: admin
+  prefix: /backend/v1/admins
+  replica: 3
+  scheme: http
+nodes:
+- ip: 127.0.0.1
+  port: 9001
+  rpc: 50002
+pid: 0
+port: 8770
+rpc: 50001

@@ -1,0 +1,6 @@
+.idea
+log/
+bin
+*.pid
+env/env.yaml
+files
