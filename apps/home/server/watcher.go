@@ -1,9 +1,10 @@
 package server
 
 import (
+	"time"
+
 	"github.com/fsnotify/fsnotify"
 	"github.com/sirupsen/logrus"
-	"time"
 )
 
 func (t *Transponder) watching(module *Module, homeRpc string) {

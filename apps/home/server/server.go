@@ -23,14 +23,15 @@ import (
 type (
 	Transponder struct {
 		mu                           sync.Mutex        // 读写锁
-		Modules                      []*Module         // 模块
+		Modules                      []*Module         // 模块 (主节点)
 		pb.UnimplementedModuleServer                   // rpc 服务
 		watcher                      *fsnotify.Watcher // 文件监控
 		maxConnect                   int32             // 最大连接数
 		connect                      int32             // 当前连接数
 		connectTime                  int               // 连接时间
 		lastConnectTime              *time.Time        // 最近连接时间
-		nodes                        []*Node           // 所有节点
+		nodes                        []*Node           // 所有节点 (主节点)
+		slave                        []*Slave          // 服务(主节点没有)
 	}
 )
 
@@ -106,6 +107,7 @@ func (t *Transponder) Run(project, mod string) (err error) {
 	}
 	// 配置设置
 	t.set(conf.C.MaxConnect, conf.C.ConnectTime)
+	// 为各个节点分配slave
 	// 开启子程序
 	t.StartUp(All, homeRpc)
 	defer t.Close()

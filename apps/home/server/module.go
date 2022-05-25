@@ -12,6 +12,7 @@ type (
 	Module struct {
 		Name       string
 		Replica    int
+		Weight     int
 		Cmd        string
 		Hash       string
 		Prefix     string
@@ -21,8 +22,9 @@ type (
 		Slaves     []Slave
 	}
 	Slave struct {
-		Addr string
-		Pid  int
+		Addr  string
+		Pid   int
+		Index int
 	}
 )
 
@@ -88,4 +90,16 @@ func (t *Transponder) getModuleLength() (l int) {
 		l += m.Replica + 1
 	}
 	return
+}
+
+// 获取服务权重
+func (t *Transponder) getModuleWeight() (l int) {
+	for _, m := range t.Modules {
+		l += (m.Replica + 1) * m.Weight
+	}
+	return
+}
+
+// Allocation 各个节点分配slave
+func (t *Transponder) Allocation() {
 }

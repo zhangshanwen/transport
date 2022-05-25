@@ -8,11 +8,12 @@ import (
 )
 
 type Node struct {
-	Ip      string `json:"ip"`
-	Port    string `json:"port"`
-	Rpc     string `json:"rpc"`
-	Status  bool   `json:"status"`  // 运行状态 true 正常 0 停止
-	Comment string `json:"comment"` // 备注
+	Ip      string   `json:"ip"`
+	Port    string   `json:"port"`
+	Rpc     string   `json:"rpc"`
+	Status  bool     `json:"status"`  // 运行状态 true 正常 0 停止
+	Comment string   `json:"comment"` // 备注
+	Slaves  []*Slave `json:"slaves"`  // 分配到哪些slave
 }
 
 func (n *Node) getRpc() string {
